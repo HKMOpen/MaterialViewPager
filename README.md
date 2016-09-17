@@ -3,7 +3,6 @@ MaterialViewPager
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialViewPager-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1731)
 [![Android Weekly](https://img.shields.io/badge/android--weekly-151-blue.svg)](http://androidweekly.net/issues/issue-151)
-[![Join the chat at https://gitter.im/florent37/MaterialViewPager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/florent37/MaterialViewPager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Material Design ViewPager easy to use library
 
@@ -25,7 +24,7 @@ And have a look on a sample Youtube Video : [Youtube Link](http://www.youtube.co
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialViewPager/images/download.svg)](https://bintray.com/florent37/maven/MaterialViewPager/_latestVersion)
 ```groovy
-compile ('com.github.florent37:materialviewpager:1.1.3@aar'){
+compile ('com.github.florent37:materialviewpager:1.2.0@aar'){
     transitive = true
 }
 ```
@@ -441,23 +440,20 @@ Sample :
 
 ##RecyclerView
 
+### LinearLayoutManager / GridLayoutManager
+
+```java
+mRecyclerView.setDecorator(new MaterialViewPagerHeaderDecorator());
+mRecyclerView.setAdapter(yourAdapter);
+```
+
+### StaggedLayoutManager
+
 From your fragment
 ```java
-mAdapter = new RecyclerViewMaterialAdapter(new ***Adapter(mList));
-mRecyclerView.setAdapter(mAdapter);
-
-MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(yourAdapter));
+MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView);
 ```
-
-###ReyclerView.OnScrollListener
-
-If you already use ReyclerView.OnScrollListener (maybe for load more, or anything else)
-
-```java
-MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, myRecyclerViewOnScrollListener);
-```
-
-So myRecyclerViewOnScrollListener will be still notified
 
 ##ScrollView
 
@@ -500,6 +496,9 @@ And must include @layout/material_view_pager_placeholder as first child
 ```
 
 #CHANGELOG
+
+##1.2.0
+- header decorator instead of Adapter
 
 ##1.1.3
 - header is now clickable
@@ -571,11 +570,6 @@ Added attributes
 viewpager_headerAlpha="0.6"
 ```
 
-#TODO
-
-- Header image does not load every time
-- **Remove Webviews from Android SDK !!!**
-
 #Community
 
 Looking for contributors, feel free to fork !
@@ -584,7 +578,7 @@ Tell me if you're using my library in your application, I'll share it in this RE
 
 #Dependencies
 
-* [Picasso][picasso] (from Square)
+* [Glide][glide] (from Bumptech)
 * [KenBurnsView][kenburnsview] (from flavioarfaria)
 * [Material PagerSlidingTabStrip][pagerslidingtitlestrip] (from jpardogo, forked from astuetz)
 * [Android-Observablescrollview][android-observablescrollview] (from ksoichiro)
@@ -601,7 +595,7 @@ Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentc
   <img alt="Follow me on Twitter"
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/twitter.png" />
 </a>
-<a href="https://www.linkedin.com/profile/view?id=297860624">
+<a href="https://www.linkedin.com/in/florentchampigny">
   <img alt="Follow me on LinkedIn"
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/linkedin.png" />
 </a>
@@ -625,8 +619,7 @@ License
     limitations under the License.
 
 
-[snap]: https://oss.sonatype.org/content/repositories/snapshots/
-[picasso]: https://github.com/square/picasso
+[glide]: https://github.com/bumptech/glide
 [kenburnsview]: https://github.com/flavioarfaria/KenBurnsView
 [pagerslidingtitlestrip]: https://github.com/jpardogo/PagerSlidingTabStrip
 [android-observablescrollview]: https://github.com/ksoichiro/Android-ObservableScrollView
